@@ -4,7 +4,7 @@ metadata:
   name: homework-deployment
   namespace: homework
   labels:
-    app: nginx-server
+    app: homework-deployment
 spec:
   replicas: 3
   selector:
