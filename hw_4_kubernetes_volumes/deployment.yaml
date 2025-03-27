@@ -19,6 +19,7 @@ spec:
       labels:
         app: homework-deployment
     spec:
+      serviceAccountName: monitoring
       nodeSelector:
         homework: "true"
       containers:
@@ -46,6 +47,13 @@ spec:
           EOF
           nginx -g "daemon off;"
         lifecycle:
+          postStart:
+              exec:
+                command: 
+                  - "sh"
+                  - "-c"
+                  - |
+                    curl --cacert /var/run/secrets/kubernetes.io/serviceaccount/ca.crt -H "Authorization: Bearer $(cat /var/run/secrets/kubernetes.io/serviceaccount/token)" https://kubernetes.default.svc/metrics > /homework/metrics.html
           preStop:
             exec:
               command: ["rm", "/homework/index.html"]
@@ -68,7 +76,7 @@ spec:
         command: ["/bin/sh", "-c"]
         args:
         - |
-          echo "Petrichao otus homework 1" > /init/index.html
+          echo "<html><body><h1>Petrichao otus homework 1</h1></body></html>" > /init/index.html
         volumeMounts:
         - name: shared-data
           mountPath: /init
