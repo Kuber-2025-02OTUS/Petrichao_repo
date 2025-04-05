@@ -1,0 +1,9 @@
+apiVersion: v2
+name: otus-homework
+description: Helm chart for OTUS homework application
+version: 0.1.0
+appVersion: 1.0.0
+dependencies:
+- name: redis
+  version: 20.11.4
+  repository: oci://registry-1.docker.io/bitnamicharts
