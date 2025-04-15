@@ -3,22 +3,22 @@ kind: ClusterRole
 metadata:
   name: mysql-operator-cr
 rules:
-# Права для работы с кастомным ресурсом MySQL
+# 1. Права для работы с кастомным ресурсом MySQL
 - apiGroups: ["otus.homework"]
-  resources: ["mysqls", "mysqls/status"]
-  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]
+  resources: ["mysqls"]
+  verbs: ["get", "list", "watch", "create", "update", "delete"]
 
-# Права для управления Deployment
+# 2. Права для управления Deployment
 - apiGroups: ["apps"]
   resources: ["deployments"]
-  verbs: ["create", "delete", "get", "list", "patch", "update", "watch"]
+  verbs: ["create", "delete", "get", "list", "update"]
 
-# Права для управления Service
+# 3. Права для управления Service
 - apiGroups: [""]
   resources: ["services"]
-  verbs: ["create", "delete", "get", "list", "patch", "update"]
+  verbs: ["create", "delete", "get", "list"]
 
-# Права для управления PVC/PV
+# 4. Права для управления PVC
 - apiGroups: [""]
-  resources: ["persistentvolumeclaims", "persistentvolumes"]
-  verbs: ["create", "delete", "get", "list", "patch"]
+  resources: ["persistentvolumeclaims"]
+  verbs: ["create", "delete", "get", "list"]
