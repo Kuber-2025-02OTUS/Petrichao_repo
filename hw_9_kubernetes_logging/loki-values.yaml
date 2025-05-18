@@ -8,7 +8,7 @@ global:
       },
       "secret": ""
     }
-  bucketname: ptrv-loki-logs
+  bucketname: <>
 
 promtail:
     tolerations:
