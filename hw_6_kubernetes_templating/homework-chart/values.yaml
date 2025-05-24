@@ -1,5 +1,5 @@
 global:
-  namespace: homework
+  namespace: homework-2
 # app
 app:
   name: homework-deployment
